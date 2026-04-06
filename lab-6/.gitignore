@@ -1,0 +1,8 @@
+data/
+runs/
+yolo_dataset/
+*.pt
+*.engine
+*.onnx
+__pycache__/
+.ipynb_checkpoints/
