@@ -31,9 +31,11 @@ import torch
 from tqdm import tqdm
 from ultralytics import YOLO
 
-CLASS_REMAP = {1: 0, 2: 1, 3: 2, 4: 3, 6: 4, 8: 5, 10: 6, 13: 7}
-CLASS_NAMES = ['person', 'bicycle', 'car', 'motorcycle', 'bus', 'truck', 'traffic_light', 'stop_sign']
+CLASS_NAMES = ['warning', 'priority', 'prohibitory', 'mandatory', 'special', 'informational', 'service', 'additional']
+CLASS_NAMES_RU = ['Предупреждающие', 'Приоритета', 'Запрещающие', 'Предписывающие', 'Особых_предписаний', 'Информационные', 'Сервиса', 'Доп_информации']
 NUM_CLASSES = len(CLASS_NAMES)
+# COCO-pseudo-label remap (used only when reading legacy *_coco.json annotations from old Kaggle dataset)
+CLASS_REMAP = {1: 0, 2: 1, 3: 2, 4: 3, 6: 4, 8: 5, 10: 6, 13: 7}
 
 
 def coco_json_to_yolo_txt(json_path: Path, img_path: Path, out_label_path: Path) -> tuple[bool, int]:
@@ -154,6 +156,10 @@ def l2_pair(a: np.ndarray, b: np.ndarray) -> float:
 
 
 def find_best_pt(lab_dir: Path) -> Path | None:
+    """Find best.pt — prefer rtsd_yolo11s, then any other run."""
+    pri = sorted(lab_dir.glob('runs/**/rtsd_yolo11s/weights/best.pt'))
+    if pri:
+        return pri[0]
     candidates = sorted(lab_dir.glob('runs/**/weights/best.pt'))
     return candidates[0] if candidates else None
 
