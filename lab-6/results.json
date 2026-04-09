@@ -1,124 +1,89 @@
 {
-  "task": "instance_segmentation",
-  "dataset": "Russian road signs (Mask R-CNN pseudo-labels, 8 COCO classes)",
+  "task": "instance_segmentation_8_road_sign_categories",
+  "dataset": "RTSD (MSU Graphics) — 8 super-classes by ПДД category",
+  "super_classes": [
+    "warning",
+    "priority",
+    "prohibitory",
+    "mandatory",
+    "special",
+    "informational",
+    "service",
+    "additional"
+  ],
+  "super_classes_ru": [
+    "Предупреждающие",
+    "Приоритета",
+    "Запрещающие",
+    "Предписывающие",
+    "Особых_предписаний",
+    "Информационные",
+    "Сервиса",
+    "Доп_информации"
+  ],
+  "mask_strategy": "bbox_rectangle",
   "model": "YOLO11s-seg (pretrained COCO, fine-tuned)",
   "num_classes": 8,
-  "classes": [
-    "person",
-    "bicycle",
-    "car",
-    "motorcycle",
-    "bus",
-    "truck",
-    "traffic_light",
-    "stop_sign"
-  ],
-  "class_remap_coco_to_local": {
-    "1": 0,
-    "2": 1,
-    "3": 2,
-    "4": 3,
-    "6": 4,
-    "8": 5,
-    "10": 6,
-    "13": 7
-  },
-  "train_size": 2054,
-  "val_size": 127,
-  "hyperparameters": {
-    "imgsz": 640,
-    "batch": 16,
-    "epochs": 50,
-    "patience": 15,
-    "optimizer": "auto",
-    "amp": true,
-    "cache": "ram",
-    "device": "0"
-  },
-  "training_seconds": 1588.8,
-  "training_minutes": 26.5,
-  "best_weights": "/mnt/data/itmo-cv/lab-6/runs/signs_yolo11s/weights/best.pt",
+  "epochs_completed": 14,
+  "training_seconds": 7356.1,
+  "training_minutes": 122.6,
+  "best_weights": "/mnt/data/itmo-cv/lab-6/runs/rtsd_yolo11s/weights/best.pt",
+  "data_yaml": "/mnt/data/itmo-cv/lab-6/data/rtsd_yolo/data.yaml",
   "ultralytics_metrics": {
-    "box_mAP50": 0.6725,
-    "box_mAP50_95": 0.5041,
-    "mask_mAP50": 0.6371,
-    "mask_mAP50_95": 0.3701
+    "box_mAP50": 0.8985,
+    "box_mAP50_95": 0.6513,
+    "mask_mAP50": 0.7123,
+    "mask_mAP50_95": 0.2718
   },
   "custom_metrics_val": {
-    "images": 127,
-    "images_with_gt": 115,
-    "tp": 514,
-    "fp": 290,
-    "fn": 225,
-    "precision": 0.6393,
-    "recall": 0.6955,
-    "mean_iou_matched": 0.7305,
-    "mean_l2_matched": 36.06,
-    "frac_iou_ge_0.50": 0.9043,
-    "frac_iou_ge_0.75": 0.3652,
-    "frac_iou_ge_0.90": 0.0087
+    "images": 1500,
+    "tp": 1716,
+    "fp": 1250,
+    "fn": 1014,
+    "precision": 0.5786,
+    "recall": 0.6286,
+    "mean_iou_matched": 0.6393,
+    "mean_l2_matched": 30.18,
+    "frac_iou_ge_0.50": 0.7747,
+    "frac_iou_ge_0.75": 0.082,
+    "frac_iou_ge_0.90": 0.002
   },
   "custom_metrics_real_photos": {
     "images": 3,
     "images_with_gt": 0,
-    "note": "no GT annotations \u2014 only qualitative inference; metrics not computed",
-    "inference_seconds": 1.4,
+    "note": "no GT annotations — only qualitative inference; metrics not computed",
     "per_image": [
       {
         "name": "Screenshot 2026-04-29 at 00.01.11.png",
-        "detections": 10,
+        "detections": 2,
         "classes": [
-          "person",
-          "car",
-          "car",
-          "car",
-          "person",
-          "car",
-          "car",
-          "person",
-          "car",
-          "truck"
+          "prohibitory",
+          "priority"
         ],
         "scores": [
-          0.886,
-          0.847,
-          0.797,
-          0.77,
-          0.66,
-          0.606,
-          0.484,
-          0.463,
-          0.414,
-          0.274
-        ],
-        "has_gt": false,
-        "image_mean_iou": null
+          0.589,
+          0.405
+        ]
       },
       {
         "name": "Screenshot 2026-04-29 at 00.01.43.png",
         "detections": 1,
         "classes": [
-          "car"
+          "prohibitory"
         ],
         "scores": [
-          0.305
-        ],
-        "has_gt": false,
-        "image_mean_iou": null
+          0.748
+        ]
       },
       {
         "name": "Screenshot 2026-04-29 at 00.02.29.png",
-        "detections": 2,
+        "detections": 1,
         "classes": [
-          "car",
-          "car"
+          "prohibitory"
         ],
         "scores": [
-          0.91,
-          0.29
-        ],
-        "has_gt": false,
-        "image_mean_iou": null
+          0.536
+        ]
       }
     ]
   }
