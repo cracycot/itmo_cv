@@ -24,11 +24,24 @@
   "mask_strategy": "bbox_rectangle",
   "model": "YOLO11s-seg (pretrained COCO, fine-tuned)",
   "num_classes": 8,
-  "epochs_completed": 63,
+  "train_size": 30000,
+  "val_size": 1500,
+  "train_instances": 52735,
+  "val_instances": 2730,
+  "hyperparameters": {
+    "imgsz": 640,
+    "batch": 16,
+    "epochs": 80,
+    "patience": 20,
+    "save_period": 3,
+    "optimizer": "auto",
+    "amp": true,
+    "cache": "disk",
+    "device": "0"
+  },
   "training_seconds": 24693.5,
   "training_minutes": 411.6,
   "best_weights": "/mnt/data/itmo-cv/lab-6/runs/rtsd_yolo11s/weights/best.pt",
-  "data_yaml": "/mnt/data/itmo-cv/lab-6/data/rtsd_yolo/data.yaml",
   "ultralytics_metrics": {
     "box_mAP50": 0.9466,
     "box_mAP50_95": 0.7132,
@@ -48,203 +61,5 @@
     "frac_iou_ge_0.75": 0.076,
     "frac_iou_ge_0.90": 0.0013
   },
-  "custom_metrics_real_photos": {
-    "images": 11,
-    "images_with_gt": 0,
-    "note": "no GT annotations — only qualitative inference; metrics not computed",
-    "per_image": [
-      {
-        "name": "Screenshot 2026-04-29 at 00.01.11.png",
-        "detections": 1,
-        "classes": [
-          "priority"
-        ],
-        "scores": [
-          0.862
-        ]
-      },
-      {
-        "name": "Screenshot 2026-04-29 at 00.01.43.png",
-        "detections": 2,
-        "classes": [
-          "priority",
-          "prohibitory"
-        ],
-        "scores": [
-          0.816,
-          0.602
-        ]
-      },
-      {
-        "name": "Screenshot 2026-04-29 at 00.02.29.png",
-        "detections": 1,
-        "classes": [
-          "priority"
-        ],
-        "scores": [
-          0.846
-        ]
-      },
-      {
-        "name": "image-13.jpg",
-        "detections": 6,
-        "classes": [
-          "informational",
-          "special",
-          "prohibitory",
-          "additional",
-          "prohibitory",
-          "additional"
-        ],
-        "scores": [
-          0.907,
-          0.843,
-          0.8,
-          0.457,
-          0.449,
-          0.418
-        ]
-      },
-      {
-        "name": "image-14.jpg",
-        "detections": 9,
-        "classes": [
-          "special",
-          "mandatory",
-          "special",
-          "prohibitory",
-          "special",
-          "special",
-          "special",
-          "mandatory",
-          "priority"
-        ],
-        "scores": [
-          0.871,
-          0.855,
-          0.82,
-          0.785,
-          0.747,
-          0.66,
-          0.46,
-          0.43,
-          0.413
-        ]
-      },
-      {
-        "name": "image-16.jpg",
-        "detections": 5,
-        "classes": [
-          "prohibitory",
-          "warning",
-          "additional",
-          "prohibitory",
-          "special"
-        ],
-        "scores": [
-          0.843,
-          0.649,
-          0.407,
-          0.354,
-          0.257
-        ]
-      },
-      {
-        "name": "image-17.jpg",
-        "detections": 8,
-        "classes": [
-          "mandatory",
-          "mandatory",
-          "special",
-          "special",
-          "additional",
-          "informational",
-          "prohibitory",
-          "prohibitory"
-        ],
-        "scores": [
-          0.793,
-          0.764,
-          0.759,
-          0.678,
-          0.604,
-          0.481,
-          0.362,
-          0.268
-        ]
-      },
-      {
-        "name": "image-2.jpg",
-        "detections": 5,
-        "classes": [
-          "priority",
-          "mandatory",
-          "informational",
-          "special",
-          "additional"
-        ],
-        "scores": [
-          0.876,
-          0.871,
-          0.863,
-          0.839,
-          0.575
-        ]
-      },
-      {
-        "name": "image-3.jpg",
-        "detections": 4,
-        "classes": [
-          "special",
-          "special",
-          "special",
-          "special"
-        ],
-        "scores": [
-          0.836,
-          0.787,
-          0.729,
-          0.431
-        ]
-      },
-      {
-        "name": "image-5.jpg",
-        "detections": 6,
-        "classes": [
-          "special",
-          "prohibitory",
-          "prohibitory",
-          "mandatory",
-          "special",
-          "special"
-        ],
-        "scores": [
-          0.835,
-          0.822,
-          0.811,
-          0.799,
-          0.797,
-          0.288
-        ]
-      },
-      {
-        "name": "image-9.jpg",
-        "detections": 5,
-        "classes": [
-          "priority",
-          "special",
-          "special",
-          "special",
-          "special"
-        ],
-        "scores": [
-          0.838,
-          0.826,
-          0.609,
-          0.285,
-          0.251
-        ]
-      }
-    ]
-  }
+  "custom_metrics_real_photos": null
 }
