@@ -1,0 +1,100 @@
+{
+  "task": "personalized_text_to_image_StableDiffusion",
+  "base_model": "runwayml/stable-diffusion-v1-5",
+  "method": "LoRA fine-tuning (peft) on user photos with DreamBooth-style instance prompt",
+  "instance_token": "sks",
+  "gender": "man",
+  "instance_prompt": "a photo of sks man",
+  "lora": {
+    "rank": 16,
+    "target_modules": [
+      "to_q",
+      "to_k",
+      "to_v",
+      "to_out.0"
+    ],
+    "optimizer": "AdamW8bit (bitsandbytes)",
+    "lr": 0.0001,
+    "max_train_steps": 1200,
+    "grad_accum": 2,
+    "batch_size": 1
+  },
+  "inference": {
+    "resolution": 512,
+    "num_inference_steps": 30,
+    "guidance_scale": 7.5,
+    "negative_prompt": null,
+    "use_img2img": false
+  },
+  "reference_photos": [
+    "photo_2026-05-25_14-25-59 (2).jpg",
+    "photo_2026-05-25_14-25-59 (3).jpg",
+    "photo_2026-05-25_14-25-59 (4).jpg",
+    "photo_2026-05-25_14-25-59.jpg",
+    "photo_2026-05-25_14-26-00 (2).jpg",
+    "photo_2026-05-25_14-26-00 (3).jpg",
+    "photo_2026-05-25_14-26-00 (4).jpg",
+    "photo_2026-05-25_14-26-00 (5).jpg",
+    "photo_2026-05-25_14-26-00 (6).jpg",
+    "photo_2026-05-25_14-26-00 (7).jpg",
+    "photo_2026-05-25_14-26-00 (8).jpg",
+    "photo_2026-05-25_14-26-00.jpg",
+    "photo_2026-05-25_14-26-01 (2).jpg",
+    "photo_2026-05-25_14-26-01 (3).jpg",
+    "photo_2026-05-25_14-26-01 (4).jpg",
+    "photo_2026-05-25_14-26-01 (5).jpg",
+    "photo_2026-05-25_14-26-01 (6).jpg",
+    "photo_2026-05-25_14-26-01 (7).jpg",
+    "photo_2026-05-25_14-26-01.jpg",
+    "photo_2026-05-25_14-26-02.jpg"
+  ],
+  "style_outputs": [
+    {
+      "index": 1,
+      "prompt": "portrait of sks man in cyberpunk style, neon lights, futuristic city, glowing reflections, ultra detailed, 8k, cinematic lighting",
+      "file": "/mnt/data/itmo-cv/lab-8/samples/style_01.png"
+    },
+    {
+      "index": 2,
+      "prompt": "portrait of sks man sculpted from polished chrome metal, reflective surface, studio lighting",
+      "file": "/mnt/data/itmo-cv/lab-8/samples/style_02.png"
+    },
+    {
+      "index": 3,
+      "prompt": "portrait of sks man in renaissance oil painting style, baroque background, dramatic lighting",
+      "file": "/mnt/data/itmo-cv/lab-8/samples/style_03.png"
+    },
+    {
+      "index": 4,
+      "prompt": "portrait of sks man as anime character, studio ghibli style, vibrant colors",
+      "file": "/mnt/data/itmo-cv/lab-8/samples/style_04.png"
+    },
+    {
+      "index": 5,
+      "prompt": "portrait of sks man as viking warrior, snowy mountain background, fur cloak, epic fantasy",
+      "file": "/mnt/data/itmo-cv/lab-8/samples/style_05.png"
+    },
+    {
+      "index": 6,
+      "prompt": "portrait of sks man as astronaut on the moon, helmet visor reflecting earth, space photography",
+      "file": "/mnt/data/itmo-cv/lab-8/samples/style_06.png"
+    }
+  ],
+  "env_outputs": [
+    {
+      "index": 1,
+      "prompt": "sks man in a forest, high quality, realism",
+      "file": "/mnt/data/itmo-cv/lab-8/samples/env_01.png"
+    },
+    {
+      "index": 2,
+      "prompt": "sks man in a city, high quality, realism",
+      "file": "/mnt/data/itmo-cv/lab-8/samples/env_02.png"
+    },
+    {
+      "index": 3,
+      "prompt": "sks man in a beach, high quality, realism",
+      "file": "/mnt/data/itmo-cv/lab-8/samples/env_03.png"
+    }
+  ]
+}
