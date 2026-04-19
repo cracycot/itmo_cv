@@ -1,10 +1,11 @@
 {
   "task": "personalized_text_to_image_StableDiffusion",
   "base_model": "runwayml/stable-diffusion-v1-5",
-  "method": "LoRA fine-tuning on UNet+text encoder, MTCNN tight face-crop preprocessing",
+  "method": "DreamBooth LoRA with prior preservation (UNet + text encoder LoRA)",
   "instance_token": "ohwx",
-  "gender": "man",
-  "instance_prompt": "a close-up portrait photo of ohwx man",
+  "class_noun": "man",
+  "instance_prompt": "a photo of ohwx man",
+  "class_prompt": "a photo of a man",
   "lora": {
     "rank": 32,
     "unet_target_modules": [
@@ -22,14 +23,18 @@
     "optimizer": "AdamW8bit (bitsandbytes)",
     "lr_unet": 0.0001,
     "lr_text": 5e-05,
-    "max_train_steps": 2000,
+    "max_train_steps": 8000,
+    "save_every": 2000,
     "grad_accum": 1,
-    "batch_size": 1
+    "batch_size": 1,
+    "prior_loss_weight": 1.0,
+    "num_class_images": 200
   },
   "inference": {
     "resolution": 512,
-    "num_inference_steps": 35,
+    "num_inference_steps": 40,
     "guidance_scale": 7.0,
+    "lora_scale": 0.7,
     "negative_prompt": null,
     "use_img2img": false
   },
@@ -55,53 +60,52 @@
     "photo_2026-05-25_14-26-01.jpg",
     "photo_2026-05-25_14-26-02.jpg"
   ],
-  "face_crops_used": 15,
   "style_outputs": [
     {
       "index": 1,
-      "prompt": "a portrait photo of ohwx man in cyberpunk style, neon lights, futuristic city, glowing reflections on face, looking at camera, ultra detailed, 8k",
+      "prompt": "ohwx man as a cyberpunk hacker, neon lights, futuristic city, glowing reflections, cinematic",
       "file": "/mnt/data/itmo-cv/lab-8/samples/style_01.png"
     },
     {
       "index": 2,
-      "prompt": "a portrait photo of ohwx man sculpted from polished chrome metal, reflective surface, looking at camera, studio lighting",
+      "prompt": "a statue of ohwx man sculpted from polished chrome metal, reflective surface, studio",
       "file": "/mnt/data/itmo-cv/lab-8/samples/style_02.png"
     },
     {
       "index": 3,
-      "prompt": "a portrait of ohwx man in renaissance oil painting style, baroque background, dramatic lighting, face in focus",
+      "prompt": "a renaissance oil painting of ohwx man, baroque background, dramatic lighting",
       "file": "/mnt/data/itmo-cv/lab-8/samples/style_03.png"
     },
     {
       "index": 4,
-      "prompt": "a portrait of ohwx man as anime character, studio ghibli style, vibrant colors, face in focus",
+      "prompt": "ohwx man as anime character, studio ghibli style, vibrant colors",
       "file": "/mnt/data/itmo-cv/lab-8/samples/style_04.png"
     },
     {
       "index": 5,
-      "prompt": "a portrait photo of ohwx man as viking warrior, snowy mountain background, fur cloak, looking at camera, epic fantasy",
+      "prompt": "ohwx man as viking warrior with helmet and beard, snowy mountain, fur cloak, epic fantasy",
       "file": "/mnt/data/itmo-cv/lab-8/samples/style_05.png"
     },
     {
       "index": 6,
-      "prompt": "a portrait photo of ohwx man as astronaut wearing space suit, helmet, looking at camera, photography",
+      "prompt": "ohwx man as astronaut in space suit, helmet, on the moon, earth in background",
       "file": "/mnt/data/itmo-cv/lab-8/samples/style_06.png"
     }
   ],
   "env_outputs": [
     {
       "index": 1,
-      "prompt": "a close-up portrait photo of ohwx man in a forest, face in focus, looking at camera, high quality, realism",
+      "prompt": "ohwx man in a forest, high quality, realism",
       "file": "/mnt/data/itmo-cv/lab-8/samples/env_01.png"
     },
     {
       "index": 2,
-      "prompt": "a close-up portrait photo of ohwx man in a city, face in focus, looking at camera, high quality, realism",
+      "prompt": "ohwx man in a city, high quality, realism",
       "file": "/mnt/data/itmo-cv/lab-8/samples/env_02.png"
     },
     {
       "index": 3,
-      "prompt": "a close-up portrait photo of ohwx man in a beach, face in focus, looking at camera, high quality, realism",
+      "prompt": "ohwx man in a beach, high quality, realism",
       "file": "/mnt/data/itmo-cv/lab-8/samples/env_03.png"
     }
   ]
